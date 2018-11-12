@@ -16,6 +16,10 @@ pub struct Planet {
     url: String,
 }
 
-pub fn query_planet() {
-    super::query::api_query();
+pub fn query_planet(planet_num: &str) {
+    // Base URL for a planet request
+    let base_url: String = "/planets/".to_owned();
+    let planet_url: &str = &(base_url + &planet_num);
+
+    super::query::api_query(planet_url);
 }
