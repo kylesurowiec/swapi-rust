@@ -9,3 +9,4 @@ pub mod types;
 
 use self::types::people::People;
 use self::types::planets::Planet;
+use self::types::films::Film;
