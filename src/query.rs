@@ -3,7 +3,7 @@
 #[derive(Debug, Deserialize)]
 pub enum StarWarsType {
     People(super::People),
-    Films,
+    Films(super::Film),
     Starships,
     Vehicles,
     Species,
@@ -21,7 +21,7 @@ pub fn api_query(endpoint: &str) {
     match response.status().is_success() {
         false => println!("{} is an invalid request!", query_url),
         true => {
-            let data = response.json::<super::People>();
+            let data = response.json::<super::Film>();
             println!("{:#?}", data);
         }
     }
