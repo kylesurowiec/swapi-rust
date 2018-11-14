@@ -4,9 +4,9 @@
 pub enum StarWarsType {
     People(super::People),
     Films(super::Film),
-    Starships,
-    Vehicles,
-    Species,
+    Starships(/*super::Starships*/),
+    Vehicles(/*super::Vehicles*/),
+    Species(/*super::Species*/),
     Planets(super::Planet),
 }
 
@@ -16,13 +16,17 @@ pub fn api_query(endpoint: &str) {
     // Concatenate endpoint onto base_url
     let query_url: &str = &(base_url + &endpoint);
 
-    let mut response = reqwest::get(query_url).expect("Failed request!");
+    let mut res = reqwest::get(query_url).expect("Failed request!");
 
-    match response.status().is_success() {
-        false => println!("{} is an invalid request!", query_url),
-        true => {
-            let data = response.json::<super::Film>();
-            println!("{:#?}", data);
-        }
+    if !res.status().is_success() {
+        println!("Error with request - {}({})", query_url, res.status());
+        panic!();
+    }
+
+    let data = res.json::<super::Planet>();
+
+    match data {
+        Ok(s) => println!("{:#?}", s),
+        Err(e) => println!("{:#?}", e),
     }
 }

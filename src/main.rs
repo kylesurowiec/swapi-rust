@@ -1,5 +1,5 @@
 extern crate swapi;
 
 fn main() {
-    swapi::types::films::query_film("2");
+    swapi::types::planets::query_planet("2");
 }
