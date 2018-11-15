@@ -6,7 +6,7 @@ pub enum StarWarsType {
     Films(super::Film),
     Starships(/*super::Starships*/),
     Vehicles(/*super::Vehicles*/),
-    Species(/*super::Species*/),
+    Species(super::Species),
     Planets(super::Planet),
 }
 
@@ -23,7 +23,7 @@ pub fn api_query(endpoint: &str) {
         panic!();
     }
 
-    let data = res.json::<super::Planet>();
+    let data = res.json::<super::Species>();
 
     match data {
         Ok(s) => println!("{:#?}", s),
