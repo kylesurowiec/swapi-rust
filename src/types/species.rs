@@ -18,7 +18,7 @@ pub struct Species {
 }
 
 pub fn query_species(species_num: &str) {
-    // Base URL for a people request
+    // Base URL for a species request
     let base_url: String = "/species/".to_owned();
     let species_url: &str = &(base_url + &species_num);
 

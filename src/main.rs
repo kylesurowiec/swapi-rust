@@ -1,5 +1,5 @@
 extern crate swapi;
 
 fn main() {
-    swapi::types::species::query_species("3");
+    swapi::types::starships::query_starships("3");
 }
