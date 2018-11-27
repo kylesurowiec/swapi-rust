@@ -21,5 +21,9 @@ pub fn query_planet(planet_num: &str) {
     let base_url: String = "/planets/".to_owned();
     let planet_url: &str = &(base_url + &planet_num);
 
-    super::query::api_query(planet_url);
+    let results = super::query::api_query(planet_url);
+    match results {
+        Ok(mut r) => println!("{:#?}", r.json::<Planet>()),
+        Err(e) => println!("{:#?}", e),
+    }
 }

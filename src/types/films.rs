@@ -20,5 +20,9 @@ pub fn query_film(title: &str) {
     let base_url: String = "/films/".to_owned();
     let film_url: &str = &(base_url + &title);
 
-    super::query::api_query(film_url);
+    let results = super::query::api_query(film_url);
+    match results {
+        Ok(mut r) => println!("{:#?}", r.json::<Film>()),
+        Err(e) => println!("{:#?}", e),
+    }
 }

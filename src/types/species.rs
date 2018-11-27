@@ -22,5 +22,9 @@ pub fn query_species(species_num: &str) {
     let base_url: String = "/species/".to_owned();
     let species_url: &str = &(base_url + &species_num);
 
-    super::query::api_query(species_url);
+    let results = super::query::api_query(species_url);
+    match results {
+        Ok(mut r) => println!("{:#?}", r.json::<Species>()),
+        Err(e) => println!("{:#?}", e),
+    }
 }

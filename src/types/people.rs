@@ -23,5 +23,9 @@ pub fn query_people(people_num: &str) {
     let base_url: String = "/people/".to_owned();
     let people_url: &str = &(base_url + &people_num);
 
-    super::query::api_query(people_url);
+    let results = super::query::api_query(people_url);
+    match results {
+        Ok(mut r) => println!("{:#?}", r.json::<People>()),
+        Err(e) => println!("{:#?}", e),
+    }
 }

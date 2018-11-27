@@ -23,5 +23,9 @@ pub fn query_vehicles(vehicles_num: &str) {
     let base_url: String = "/vehicles/".to_owned();
     let vehicles_url: &str = &(base_url + &vehicles_num);
 
-    super::query::api_query(vehicles_url);
+    let results = super::query::api_query(vehicles_url);
+    match results {
+        Ok(mut r) => println!("{:#?}", r.json::<Vehicles>()),
+        Err(e) => println!("{:#?}", e),
+    }
 }
