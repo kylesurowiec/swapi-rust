@@ -3,11 +3,11 @@ name = "swapi"
 version = "0.2.0"
 authors = ["Kyle Surowiec <kylesurowic@me.com>", "Declan Johnson <declan.l.johnson@gmail.com>"]
 edition = "2018"
-description = "A Rust wrapper for the Star Wars API - https://swapi.co/"
+description = "A Rust wrapper for the Star Wars API - https://swapi.co/. Contributors are welcome - https://github.com/kylesurowiec/swapi-rust"
 license = "MIT"
 
 [dependencies]
-reqwest = "0.9.4"
+reqwest = "0.9.5"
 serde = "1.0"
-serde_derive = "1.0.80"
+serde_derive = "1.0.81"
 serde_json = "1.0.33"
