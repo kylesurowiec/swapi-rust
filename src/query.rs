@@ -10,6 +10,8 @@ pub enum StarWarsType {
     Planets(super::planets::Planet),
 }
 
+
+
 pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     // Base URL for all API requests
     // endpoint is concatenated onto base_url
@@ -26,4 +28,18 @@ pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     };
 
     query_results
+}
+
+pub fn query<'de, T>(endpoint: &str, _type_buf: &mut T) 
+    where T: serde::de::Deserialize<'de> + Default + Clone {
+    let results = api_query(endpoint);
+    match results {
+        Ok(mut r) => {
+            *_type_buf = match r.json::<T>() {
+                Ok(v) => v,
+                Err(e) => panic!("Fatal Decoding Error {:#?}", e)
+            }.clone();
+        },
+        Err(e) => panic!("{:#?}", e)
+    }
 }
