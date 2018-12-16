@@ -1,4 +1,4 @@
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Deserialize, Default, Clone)]
 pub struct Starships {
     name: String,
     model: String,
@@ -20,14 +20,20 @@ pub struct Starships {
     edited: String,
 }
 
-pub fn query_starships(starships_num: &str) {
+pub fn query_starships(starships_num: &str, _starships_buf: &mut Starships) {
     // Base URL for a starships request
     let base_url: String = "/starships/".to_owned();
     let starships_url: &str = &(base_url + &starships_num);
 
     let results = super::query::api_query(starships_url);
     match results {
-        Ok(mut r) => println!("{:#?}", r.json::<Starships>()),
-        Err(e) => println!("{:#?}", e),
+        Ok(mut r) => {
+            *_starships_buf = match r.json::<Starships>() {
+                Ok(v) => v,
+                Err(e) => panic!("Decoding error {:#?}", e)
+            }.clone();
+
+        },
+        Err(e) => panic!("{:#?}", e),
     }
 }

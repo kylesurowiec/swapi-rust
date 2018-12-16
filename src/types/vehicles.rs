@@ -17,7 +17,7 @@ pub struct Vehicles {
     url: String,
     vehicle_class: String,
 }
-/*
+
 pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut Vehicles) {
     // Base URL for a vehicles request
     let base_url: String = "/vehicles/".to_owned();
@@ -26,11 +26,11 @@ pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut Vehicles) {
     let results = super::query::api_query(vehicles_url);
     match results {
         Ok(mut r) => {
-            *_vehicles_buf = match r.json::<Planet>() {
+            *_vehicles_buf = match r.json::<Vehicles>() {
                 Ok(v) => v,
                 Err(e) => panic!("")
             }.clone();
         },
         Err(e) => println!("{:#?}", e),
     }
-}*/
+}
