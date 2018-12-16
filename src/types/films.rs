@@ -16,7 +16,7 @@ pub struct Film {
     edited: String,
 }
 
-pub fn query_film(title: &str, _film_buf: &mut Film) { 
+pub fn query_film(title: &str, _film_buf: &mut Film) {
     let base_url: String = "/films/".to_owned();
     let film_url: &str = &(base_url + &title);
 
@@ -25,10 +25,10 @@ pub fn query_film(title: &str, _film_buf: &mut Film) {
         Ok(mut r) => {
             *_film_buf = match r.json::<Film>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }

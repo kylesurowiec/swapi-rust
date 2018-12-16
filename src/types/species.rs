@@ -27,10 +27,10 @@ pub fn query_species(species_num: &str, _species_buf: &mut Species) {
         Ok(mut r) => {
             *_species_buf = match r.json::<Species>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }

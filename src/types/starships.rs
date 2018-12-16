@@ -30,10 +30,10 @@ pub fn query_starships(starships_num: &str, _starships_buf: &mut Starships) {
         Ok(mut r) => {
             *_starships_buf = match r.json::<Starships>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }

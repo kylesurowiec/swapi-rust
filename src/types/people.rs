@@ -28,10 +28,10 @@ pub fn query_people(people_num: &str, _people_buf: &mut People) {
         Ok(mut r) => {
             *_people_buf = match r.json::<People>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }

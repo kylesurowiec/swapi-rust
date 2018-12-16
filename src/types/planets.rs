@@ -25,10 +25,10 @@ pub fn query_planet(planet_num: &str, _planet_buf: &mut Planet) {
         Ok(mut r) => {
             *_planet_buf = match r.json::<Planet>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }

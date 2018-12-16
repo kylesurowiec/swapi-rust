@@ -28,9 +28,10 @@ pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut Vehicles) {
         Ok(mut r) => {
             *_vehicles_buf = match r.json::<Vehicles>() {
                 Ok(v) => v,
-                Err(e) => panic!("")
-            }.clone();
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => println!("{:#?}", e),
     }
 }

@@ -10,8 +10,6 @@ pub enum StarWarsType {
     Planets(super::planets::Planet),
 }
 
-
-
 pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     // Base URL for all API requests
     // endpoint is concatenated onto base_url
