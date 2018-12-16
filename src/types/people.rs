@@ -1,4 +1,4 @@
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Deserialize, Default, Clone)]
 pub struct People {
     name: String,
     birth_year: String,
@@ -18,14 +18,20 @@ pub struct People {
     edited: String,
 }
 
-pub fn query_people(people_num: &str) {
+pub fn query_people(people_num: &str, _people_buf: &mut People) {
     // Base URL for a people request
     let base_url: String = "/people/".to_owned();
     let people_url: &str = &(base_url + &people_num);
 
     let results = super::query::api_query(people_url);
     match results {
-        Ok(mut r) => println!("{:#?}", r.json::<People>()),
-        Err(e) => println!("{:#?}", e),
+        Ok(mut r) => {
+            *_people_buf = match r.json::<People>() {
+                Ok(v) => v,
+                Err(e) => panic!("Decoding error {:#?}", e)
+            }.clone();
+
+        },
+        Err(e) => panic!("{:#?}", e),
     }
 }

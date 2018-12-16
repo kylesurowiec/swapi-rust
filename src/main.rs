@@ -1,5 +1,8 @@
 extern crate swapi;
 
 fn main() {
-    swapi::types::species::query_species("3");
+    let mut planet_resp: swapi::types::species::Species = Default::default();
+    println!("{:#?}", planet_resp);
+    swapi::types::species::query_species("6", &mut planet_resp);
+    println!("{:#?}", planet_resp);
 }
