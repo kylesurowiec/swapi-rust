@@ -30,6 +30,26 @@ pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     query_results
 }
 
+/* 
+ * serde_derive & generics
+ *
+ * Generic query method, not (fully) functioning due to the unique implemententations
+ * generated for each struct when Deserialize is derived (serde_derive). 
+ * 
+ * When a struct derives Deserialize, serde_derive generates a unique implementation 
+ * for that struct, its implementation is generated in a module with this pattern:
+ *  CURR_MOD::_IMPL_DESERIALIZE_FOR_StructName::_serde::Deserialize<'de>
+ * 
+ * Rust doesnt accept the uniquly generated implementations as satisfying the
+ * where T: serde::Deserialize type requirement.
+ *
+ * I believe it could be worked around by manually implementing Deserialize, or by
+ * taking a look at the macros serde provides to see if theres a way to
+ * generate Deserialize implementations that can satisfy type requirements.
+ *
+ * Future release candidate
+ *
+ *
 pub fn query<'de, T>(endpoint: &str, _type_buf: &mut T) 
     where T: serde::de::Deserialize<'de> + Default + Clone {
     let results = api_query(endpoint);
@@ -43,3 +63,4 @@ pub fn query<'de, T>(endpoint: &str, _type_buf: &mut T)
         Err(e) => panic!("{:#?}", e)
     }
 }
+*/
