@@ -26,7 +26,7 @@ pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     query_results
 }
 
-pub fn query_film(title: &str, _film_buf: &mut Film) { 
+pub fn query_film(title: &str, _film_buf: &mut Film) {
     let base_url: String = "/films/".to_owned();
     let film_url: &str = &(base_url + &title);
 
@@ -35,10 +35,10 @@ pub fn query_film(title: &str, _film_buf: &mut Film) {
         Ok(mut r) => {
             *_film_buf = match r.json::<Film>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }
@@ -52,10 +52,10 @@ pub fn query_people(people_num: &str, _people_buf: &mut People) {
         Ok(mut r) => {
             *_people_buf = match r.json::<People>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }
@@ -69,10 +69,10 @@ pub fn query_planet(planet_num: &str, _planet_buf: &mut Planet) {
         Ok(mut r) => {
             *_planet_buf = match r.json::<Planet>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }
@@ -86,10 +86,10 @@ pub fn query_species(species_num: &str, _species_buf: &mut Species) {
         Ok(mut r) => {
             *_species_buf = match r.json::<Species>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }
@@ -103,10 +103,10 @@ pub fn query_starships(starships_num: &str, _starships_buf: &mut Starships) {
         Ok(mut r) => {
             *_starships_buf = match r.json::<Starships>() {
                 Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e)
-            }.clone();
-
-        },
+                Err(e) => panic!("Decoding error {:#?}", e),
+            }
+            .clone();
+        }
         Err(e) => panic!("{:#?}", e),
     }
 }
@@ -121,17 +121,13 @@ pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut types::Vehicles) {
         Ok(mut r) => {
             *_vehicles_buf = match r.json::<types::Vehicles>() {
                 Ok(v) => v,
-                Err(e) => panic!("")
-            }.clone();
-        },
+                Err(e) => panic!(""),
+            }
+            .clone();
+        }
         Err(e) => println!("{:#?}", e),
     }
 }
-
-
-
-
-
 
 /* 
  * serde_derive & generics

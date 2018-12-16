@@ -126,14 +126,3 @@ pub struct Vehicles {
     url: String,
     vehicle_class: String,
 }
-
-
-
-
-
-
-
-
-
-
-
