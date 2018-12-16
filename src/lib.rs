@@ -121,7 +121,7 @@ pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut types::Vehicles) {
         Ok(mut r) => {
             *_vehicles_buf = match r.json::<types::Vehicles>() {
                 Ok(v) => v,
-                Err(e) => panic!(""),
+                Err(e) => panic!("Decoding error {:#?}", e),
             }
             .clone();
         }
