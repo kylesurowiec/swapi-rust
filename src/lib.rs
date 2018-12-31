@@ -43,14 +43,17 @@ pub fn query_film(title: &str, _film_buf: &mut Film) {
     }
 }
 
-pub fn query_people(people_num: &str, _people_buf: &mut People) {
+pub fn query_people(people_num: &str) {
     // Base URL for a people request
     let base_url: String = "/people/".to_owned();
     let people_url: &str = &(base_url + &people_num);
+
     let results = api_query(people_url);
+    let mut _people_buf: self::types::Person = Default::default();
+
     match results {
         Ok(mut r) => {
-            *_people_buf = match r.json::<People>() {
+            _people_buf = match r.json::<Person>() {
                 Ok(v) => v,
                 Err(e) => panic!("Decoding error {:#?}", e),
             }
@@ -60,14 +63,17 @@ pub fn query_people(people_num: &str, _people_buf: &mut People) {
     }
 }
 
-pub fn query_planet(planet_num: &str, _planet_buf: &mut Planet) {
+pub fn query_planet(planet_num: &str) {
     // Base URL for a planet request
     let base_url: String = "/planets/".to_owned();
     let planet_url: &str = &(base_url + &planet_num);
+
     let results = api_query(planet_url);
+    let mut _planet_buf: self::types::Planet = Default::default();
+
     match results {
         Ok(mut r) => {
-            *_planet_buf = match r.json::<Planet>() {
+            _planet_buf = match r.json::<Planet>() {
                 Ok(v) => v,
                 Err(e) => panic!("Decoding error {:#?}", e),
             }

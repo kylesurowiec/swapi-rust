@@ -1,14 +1,14 @@
 // Possible Star Wars data types
 // that a GET request can return
-#[derive(Debug, Deserialize)]
-pub enum StarWarsType {
-    People(People),
-    Films(Film),
-    Starships(Starships),
-    Vehicles(Vehicles),
-    Species(Species),
-    Planets(Planet),
-}
+// #[derive(Debug, Deserialize)]
+// pub enum StarWarsType {
+//     People(Person),
+//     Films(Film),
+//     Starships(Starship),
+//     Vehicles(Vehicle),
+//     Species(Species),
+//     Planets(Planet),
+// }
 
 #[derive(Debug, Deserialize, Default, Clone)]
 pub struct Film {
@@ -17,7 +17,7 @@ pub struct Film {
     opening_crawl: String,
     director: String,
     producer: String,
-    release_date: String, // ISO 8601 of release date
+    release_date: String,
     species: Vec<String>,
     starships: Vec<String>,
     vehicles: Vec<String>,
@@ -29,7 +29,7 @@ pub struct Film {
 }
 
 #[derive(Debug, Deserialize, Default, Clone)]
-pub struct People {
+pub struct Person {
     name: String,
     birth_year: String,
     eye_color: String,
@@ -86,7 +86,7 @@ pub struct Species {
 }
 
 #[derive(Debug, Deserialize, Default, Clone)]
-pub struct Starships {
+pub struct Starship {
     name: String,
     model: String,
     starship_class: String,
@@ -108,7 +108,7 @@ pub struct Starships {
 }
 
 #[derive(Debug, Deserialize, Default, Clone)]
-pub struct Vehicles {
+pub struct Vehicle {
     cargo_capacity: String,
     consumables: String,
     cost_in_credits: String,
