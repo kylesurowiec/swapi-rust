@@ -76,7 +76,7 @@ pub struct Species {
     edited: String,
     eye_colors: String,
     hair_colors: String,
-    homeworld: String,
+    homeworld: Option<String>,
     language: String,
     name: String,
     people: Vec<String>,

@@ -26,110 +26,147 @@ pub fn api_query(endpoint: &str) -> Result<reqwest::Response, reqwest::Error> {
     query_results
 }
 
-pub fn query_film(title: &str, _film_buf: &mut Film) {
+/// Query films details given the film number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_film("1");
+/// ```
+pub fn query_film(title: &str) {
     let base_url: String = "/films/".to_owned();
     let film_url: &str = &(base_url + &title);
 
     let results = api_query(film_url);
     match results {
         Ok(mut r) => {
-            *_film_buf = match r.json::<Film>() {
-                Ok(v) => v,
+            match r.json::<Film>() {
+                Ok(v) => println!("{:#?}", v),
                 Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
+            };
         }
         Err(e) => panic!("{:#?}", e),
     }
 }
 
-pub fn query_people(people_num: &str) {
-    // Base URL for a people request
+/// Query a characters details given the characters number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_person("1");
+/// ```
+pub fn query_person(people_num: &str) {
     let base_url: String = "/people/".to_owned();
-    let people_url: &str = &(base_url + &people_num);
+    let person_url: &str = &(base_url + &people_num);
 
-    let results = api_query(people_url);
-    let mut _people_buf: self::types::Person = Default::default();
+    let results = api_query(person_url);
+    // let mut _people_buf: self::types::Person = Default::default();
 
     match results {
-        Ok(mut r) => {
-            _people_buf = match r.json::<Person>() {
-                Ok(v) => v,
-                Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
-        }
+        Ok(mut r) => match r.json::<Person>() {
+            Ok(v) => println!("{:#?}", v),
+            Err(e) => panic!("Decoding error {:#?}", e),
+        },
         Err(e) => panic!("{:#?}", e),
     }
 }
 
+/// Query a planets details given the planet number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_planet("1");
+/// ```
 pub fn query_planet(planet_num: &str) {
-    // Base URL for a planet request
     let base_url: String = "/planets/".to_owned();
     let planet_url: &str = &(base_url + &planet_num);
 
     let results = api_query(planet_url);
-    let mut _planet_buf: self::types::Planet = Default::default();
+    // let mut _planet_buf: self::types::Planet = Default::default();
 
     match results {
         Ok(mut r) => {
-            _planet_buf = match r.json::<Planet>() {
-                Ok(v) => v,
+            match r.json::<Planet>() {
+                Ok(v) => println!("{:#?}", v),
                 Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
+            };
         }
         Err(e) => panic!("{:#?}", e),
     }
 }
 
-pub fn query_species(species_num: &str, _species_buf: &mut Species) {
-    // Base URL for a species request
+/// Query a species details given the species number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_species("1");
+/// ```
+pub fn query_species(species_num: &str) {
     let base_url: String = "/species/".to_owned();
     let species_url: &str = &(base_url + &species_num);
+
     let results = api_query(species_url);
+    // let mut _species_buf: self::types::Planet = Default::default();
+
     match results {
         Ok(mut r) => {
-            *_species_buf = match r.json::<Species>() {
-                Ok(v) => v,
+            match r.json::<Species>() {
+                Ok(v) => println!("{:#?}", v),
                 Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
+            };
         }
         Err(e) => panic!("{:#?}", e),
     }
 }
 
-pub fn query_starships(starships_num: &str, _starships_buf: &mut Starships) {
-    // Base URL for a starships request
+/// Query a starships details given the starship number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_starship("1");
+/// ```
+pub fn query_starship(starship_num: &str) {
     let base_url: String = "/starships/".to_owned();
-    let starships_url: &str = &(base_url + &starships_num);
-    let results = api_query(starships_url);
+    let starship_url: &str = &(base_url + &starship_num);
+
+    let results = api_query(starship_url);
+    // let mut _starship_buf: self::types::Planet = Default::default();
+
     match results {
         Ok(mut r) => {
-            *_starships_buf = match r.json::<Starships>() {
-                Ok(v) => v,
+            match r.json::<Starship>() {
+                Ok(v) => println!("{:#?}", v),
                 Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
+            };
         }
         Err(e) => panic!("{:#?}", e),
     }
 }
 
-pub fn query_vehicles(vehicles_num: &str, _vehicles_buf: &mut types::Vehicles) {
-    // Base URL for a vehicles request
+/// Query a vehicles details given the vehicle number.
+///
+/// # Examples
+///
+/// ```
+/// swapi::query_starship("1");
+/// ```
+pub fn query_vehicle(vehicle_num: &str) {
     let base_url: String = "/vehicles/".to_owned();
-    let vehicles_url: &str = &(base_url + &vehicles_num);
+    let vehicle_url: &str = &(base_url + &vehicle_num);
 
-    let results = api_query(vehicles_url);
+    let results = api_query(vehicle_url);
+    // let mut _starship_buf: self::types::Planet = Default::default();
+
     match results {
         Ok(mut r) => {
-            *_vehicles_buf = match r.json::<types::Vehicles>() {
-                Ok(v) => v,
+            match r.json::<types::Vehicle>() {
+                Ok(v) => println!("{:#?}", v),
                 Err(e) => panic!("Decoding error {:#?}", e),
-            }
-            .clone();
+            };
         }
         Err(e) => println!("{:#?}", e),
     }
